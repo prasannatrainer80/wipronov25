@@ -32,6 +32,15 @@ You can declare variable in javascript, by using var keyword
 
 var variable_name;
 
+In JavaScript, arrays we can store any kind of data like 
+
+numbers, strings and functions.
+
+
+var array = ["a","b","c"];
+
+var array = new Array("a","b","c");
+
 
 
 
