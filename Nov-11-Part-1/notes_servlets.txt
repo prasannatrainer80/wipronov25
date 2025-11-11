@@ -254,7 +254,18 @@ To Run the Servlet, you need to perform the following steps.
 
 5. Right click on the project and select the Servlet from that. 
 
-6. 
+
+RequestDispatcher : Allows you to redirect or include the target page in the given servlet/jsp page. Assume, i want to redirect to Menu.html page, then 
+
+RequestDispatcher disp = request.getRequestDispatcher("Menu.html");
+disp.forward(request,response);
+
+Now if you want to add login.html to the servlet 
+
+RequestDispatcher disp = request.getRequestDispatcher("login.html");
+disp.include(request,response);
+
+
 
 
 
