@@ -155,3 +155,36 @@ public class TicketController {
         return ResponseEntity.ok(service.searchByTitle(title));
     }
 }
+
+
+http://localhost:9001/Ticket/showTickets
+http://localhost:9001/Ticket/search/Lets C
+
+Post 
+http://localhost:9001/Ticket
+
+{
+    "id":8,
+    "title": "Printing Issue",
+    "description": "Getting Line Middle",
+    "customerName": "Satya",
+    "customerMobile": "9008844123",
+    "status": "open"
+  }
+
+Put
+
+http://localhost:9001/Ticket
+
+{
+    "id":1,
+    "title": "Mail Not Working",
+    "description": "OutLook Overloaded",
+    "customerName": "Swapna",
+    "customerMobile": "9008844123",
+    "status": "open"
+  }
+
+Delete
+
+http://localhost:9001/Ticket/8
