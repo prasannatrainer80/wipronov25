@@ -1,0 +1,157 @@
+✔ Ticket Entity
+✔ Ticket Repository
+✔ Ticket Service (with validation + logic)
+✔ Ticket Controller
+✔ Validation rules
+✔ Search endpoint
+
+You can copy–paste directly into your Spring Boot project.
+
+✅ 1. Ticket Entity
+@Entity
+public class Ticket {
+
+    @Id
+    private Integer id;
+
+    private String title;
+    private String description;
+    private String customerName;
+    private String customerMobile;
+    private String status;
+    
+    // Getters and Setters
+}
+
+✅ 2. Ticket Repository
+@Repository
+public interface TicketRepository extends JpaRepository<Ticket, Integer> {
+
+    List<Ticket> findByTitleContainingIgnoreCase(String title);
+}
+
+✅ 3. Ticket Service (Important Logic + Validation)
+@Service
+public class TicketService {
+
+    @Autowired
+    private TicketRepository repo;
+
+    // -------------- VALIDATION COMMON METHOD --------------
+    public void validateTicket(Ticket ticket) {
+        
+        // Validate mobile number (exact 10 digits)
+        if (!ticket.getCustomerMobile().matches("\\d{10}")) {
+            throw new IllegalArgumentException("Invalid mobile number. Must be exactly 10 digits.");
+        }
+
+        // Validate status
+        List<String> validStatus = Arrays.asList("open", "processing", "closed");
+        if (!validStatus.contains(ticket.getStatus().toLowerCase())) {
+            throw new IllegalArgumentException("Invalid status. Must be open, processing, closed.");
+        }
+    }
+
+    // ------------------ ADD TICKET -----------------------
+    public Ticket addTicket(Ticket ticket) {
+        
+        if (repo.existsById(ticket.getId())) {
+            throw new RuntimeException("Ticket ID already exists");
+        }
+
+        validateTicket(ticket);
+        return repo.save(ticket);
+    }
+
+    // ---------------- UPDATE TICKET ----------------------
+    public Ticket updateTicket(Ticket ticket) {
+
+        if (!repo.existsById(ticket.getId())) {
+            throw new NoSuchElementException("Ticket ID not found");
+        }
+
+        validateTicket(ticket);
+        return repo.save(ticket);
+    }
+
+    // ---------------- DELETE TICKET ----------------------
+    public void deleteTicket(Integer id) {
+        if (!repo.existsById(id)) {
+            throw new NoSuchElementException("Ticket not found");
+        }
+        repo.deleteById(id);
+    }
+
+    // ---------------- GET ALL TICKETS --------------------
+    public List<Ticket> getAllTickets() {
+        return repo.findAll();
+    }
+
+    // ---------------- SEARCH BY TITLE --------------------
+    public List<Ticket> searchByTitle(String title) {
+        return repo.findByTitleContainingIgnoreCase(title);
+    }
+}
+
+✅ 4. Ticket Controller
+@RestController
+@RequestMapping("/Ticket")
+public class TicketController {
+
+    @Autowired
+    private TicketService service;
+
+    // --------------- ADD TICKET -----------------------
+    @PostMapping
+    public ResponseEntity<?> addTicket(@RequestBody Ticket ticket) {
+        try {
+            Ticket saved = service.addTicket(ticket);
+            return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+        } 
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } 
+        catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    // --------------- UPDATE TICKET -----------------------
+    @PutMapping
+    public ResponseEntity<?> updateTicket(@RequestBody Ticket ticket) {
+        try {
+            Ticket updated = service.updateTicket(ticket);
+            return ResponseEntity.ok(updated);
+        } 
+        catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } 
+        catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    // --------------- DELETE TICKET -----------------------
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTicket(@PathVariable Integer id) {
+        try {
+            service.deleteTicket(id);
+            return ResponseEntity.ok("Ticket deleted successfully");
+        } 
+        catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    // --------------- GET ALL TICKETS -----------------------
+    @GetMapping
+    public ResponseEntity<?> getAllTickets() {
+        return ResponseEntity.ok(service.getAllTickets());
+    }
+
+    // --------------- SEARCH BY TITLE -----------------------
+    @GetMapping("/search")
+    public ResponseEntity<?> search(@RequestParam String title) {
+        return ResponseEntity.ok(service.searchByTitle(title));
+    }
+}
