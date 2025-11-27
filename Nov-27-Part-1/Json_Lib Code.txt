@@ -1,0 +1,45 @@
+JWT -> Json Web Token
+
+As it is one of the famous security mechanism, that which allows you to 
+secure restful webservices w.r.t. proper authentication. 
+
+It will generate a key which is known as bearer token, based on that one we need to give permission to the specified urls, where authentication and authorization takes place. 
+
+What is Authentication
+
+What is Authorization 
+
+JSON contains 3 parts as 
+
+(i)    Header
+(ii)   Payload
+(iii)  Signature 
+
+JSON web token stores the data in encrypted format, as it supports CORS Policy (Cross Origin Resource Sharing) 
+
+It supports HMAC or HS256 hashing algorithm to Encrypt or Decrypt the data. 
+
+_____________________________________________________________________________
+
+
+Implement modules ad
+
+1) Add Login (UserName exists give message else add the record) 
+
+2) Add Book (If any new book its to be entered, if the bookName and Author already exists then It has to update noOfCopies)
+
+3) In Return book, if book returned after 1 month, then apply fine for 10 rs per each day
+
+Assume Book taken on Oct 1 2026 returned on Nov 10 2026 then 10 days fine to be calculated 
+
+
+
+
+
+
+
+
+
+
+
+
