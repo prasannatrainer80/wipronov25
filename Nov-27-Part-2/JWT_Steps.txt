@@ -1,0 +1,165 @@
+
+Now, lets implement JWT w.r.t. Practical
+
+Already we did EmployService, in that we need to give permissions
+to employShowAll service w.r.t. JWT 
+
+1) Step 1 : 
+
+Create SB Project and Add the below Dependencies
+
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-api</artifactId>
+    <version>0.11.5</version>
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-impl</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt-jackson</artifactId>
+    <version>0.11.5</version>
+    <scope>runtime</scope>
+</dependency>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-devtools</artifactId>
+<scope>runtime</scope>
+<optional>true</optional>
+</dependency>
+
+Create the Model classes 
+
+Employ.java
+AuthRequest.java
+
+Step 3 : Create a Repository Class
+
+EmployRepository.java
+
+Step 4 : 
+
+Next make service and save password encoded with 
+
+	@Autowired
+	private PasswordEncoder encoder;
+
+Step 5 : 
+
+Create JwtService and write relevant code
+
+Step 6 : 
+
+Create JwtAuthFilter and write relevant code 
+
+as call EmployService methods here, and specify Authorization
+and Bearer Token.
+
+Step 7 : 
+
+In SecurityConfig.java specify CORS policy and add urls 
+with protection
+
+Step 8 :
+Now write the code for Controller
+
+application.proerties
+
+specify properies as Table to be created automatically
+
+Running Steps 
+______________
+
+Run the application and we need to create a record 
+
+In postman type the url and select method as POST
+
+http://localhost:2233/employ/addEmploy
+
+Body JSON data as
+
+http://localhost:2233/employ/addEmploy	 (POST ONE) 
+{
+    "name": "ritika",
+    "email": "ritika@gmail.com",
+    "gender": "FEMALE",
+    "password": "prasanna",
+    "roles": "ROLE_ADMIN"
+}
+
+http://localhost:2233/employ/generateToken (POST ONE)
+{
+    "username": "prasanna",
+    "password": "prasanna"
+}
+
+Now, it generates token as
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcmFzYW5uYSIsImlhdCI6MTc2NDI0MDQ1MiwiZXhwIjoxNzY0MjQyMjUyfQ.ngc3HMhEZHq6EDG_0PHxuRcXP93UZ2ogPWAPWJ8cVfI
+
+Now For ShowEmploy
+
+http://localhost:2233/employ/showEmploy (change to GET)
+
+In Authorization Tab select Bearer Token and pass the JWT 
+
+Then you can see Table Records
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
