@@ -1,0 +1,26 @@
+
+Admin
+_____
+adminId (int ai pk)
+adminName
+domain
+adminUserName
+adminPassword
+role 
+
+
+Perform
+
+1) Add Admin
+2) Show Admin
+3) Search Admin
+4) Update Admin
+5) Delete Admin
+6) Generate Token
+
+For 1) Add Admin, Search Admin, Generate Token no security required
+For 2) Show Admin, Delete Admin and Update Admin JWT must be there
+
+U need to auth w.r.t. adminUserName/adminPassword combination 
+
+
