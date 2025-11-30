@@ -1,0 +1,50 @@
+Admin
+_____
+adminId(Id)
+AdminName
+UserName
+Password 
+Email
+MobileNo
+AdminStatus(YES/NO)
+
+
+SongsLibrary
+____________
+
+LibraryId
+SongId
+SongName
+MusicDirector
+Singer
+ReleaseDate
+AlbumName
+SongType (FREE/PREMIUM)
+SongStatus(AVAILABLE/NOTAVAILABLE)
+
+Users
+______
+UserId
+FirstName
+LastName
+UserName
+Password
+Email
+Mobile
+Address1
+Address2
+City
+State
+ZipCode
+Country
+Status
+
+--> Add User
+--> Show User
+-> Login User
+--> Admin Login
+--> Add Song
+--> Show Songs (Available)
+--> Show Songs (Free)
+
+

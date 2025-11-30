@@ -1,0 +1,49 @@
+1) Create database for 
+
+Customer 
+_________
+
+AccountNo
+FirstName
+LastName
+Dob
+DateOfOpen
+Address1
+Address2
+City
+State
+ZipCode
+Country
+Amount
+CheqFacil
+AccountType
+UserName
+password
+MobileNo
+Email
+Status 
+
+_______________________________________________________________
+
+Admin will see all pending records and he will Approve then the accountNo to be generated.
+
+Admin
+_____
+AdminId
+AdminName
+AdminUserName
+AdminPassword
+AdminEmail
+AdminPhone
+AdminStatus
+
+
+A1) Add Customer
+
+ 2) Show Customer
+
+By Default Customer account status is Inactive
+
+As In Jsp admin you can see all inactive user details,
+
+as once you click on active button accountNo to be generated and status becomes active 
