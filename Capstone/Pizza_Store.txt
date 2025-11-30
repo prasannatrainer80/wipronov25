@@ -86,3 +86,12 @@ CREATE TABLE payments (
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
 
+1) Add Admin
+2) Login Admin
+3) Add User
+4) Login User
+3) Add Pizza
+6) Show Pizza 
+7) Show by Category
+8) Show By ItemName
+
