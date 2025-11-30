@@ -1,0 +1,92 @@
+PlayStore
+__________
+
+Vatsal
+Venkat Sai
+Harshit
+Sai Ganesh
+Priyam Sarkar
+Sparsh
+Meaga
+
+Admin
+_____
+adminId(Id)
+AdminName
+UserName
+Password 
+Email
+MobileNo
+AdminStatus(YES/NO)
+
+
+AppOwner
+_________
+
+AppOwnerId
+AppOwnerFirstName
+AppOwnerLastName
+AppOwnerUserName
+AppOwerPassword
+AppOwnerEmail
+AppOwnerMobile
+AppOwnerAddress1
+AppOwnerAddress2
+AppOwnerCity
+AppOwnerState
+AppOwnerZipCode
+AppOwnerCountry
+
+
+AppDetails
+___________
+
+AppId(ID)
+AppName
+Description 
+Release_Date
+Version
+Rating
+Genre
+AppType
+AppOwnerID(FK)
+
+User
+____
+
+UserId
+FirstName
+LastName
+Dob
+DateOfOpen
+Address1
+Address2
+City
+State
+ZipCode
+Country
+Amount
+CheqFacil
+AccountType
+UserName
+password
+MobileNo
+Email
+Status 
+
+UserApps
+_________
+UserAppId(PK)
+UserId (FK)
+AppID (FK)
+DownloadDate 
+
+-> AddUser
+-> LoginUser
+-> Add Admin
+-> Login Admin
+-> Add App(By Admin)
+-> Show App
+-> Show App By Genre
+-> Add App to User(DowloadApp)
+-> Show UserApps
