@@ -1,0 +1,64 @@
+Git repo contains 4 major areas as
+
+1) Working Directory : The GitHub repository where we can add/update
+the files. 
+
+2) Staging Area : This is the area where all the updated and new files
+to be stored. Staging ensures its the committed place where all the data files are to be available for commit. 
+
+3) Local Repository : The files to be uploaded first in the local repository
+
+4) Remote Repository : The place where the files to be uploaded in remote place as anyone can access. 
+
+
+1) Write a Command to download all GitHub files from existing repository 
+
+git clone
+
+syntax : 
+
+git clone https://github.com/prasannatrainer80/gitpractwipro
+
+2) Create a file and add to the staging area 
+
+git add file_name
+
+git add . (then all the files and updates are to be stored permanently)
+
+3) Add the files to the local repository 
+
+git commit -m "message"
+
+git commit -m "first commit"
+
+4) Add the files to the remote repository 
+
+git push : Command allows you to push the files into remote repository 
+
+git push origin main
+
+git log : Allows you to display list of commits available in the current repo.
+
+5) git status : Used to display current status of particular working git repo
+
+6) git checkout file_name : Used to cancel the content which is not staged. 
+
+7) git reset HEAD file_name : Used to unstage the given file. 
+
+8) git diff  : used to find diff between commited data (vs) uncommitted data 
+
+9) git branch : Used to see the list of branches. 
+
+10) git branch branch_name : used to create a new branch
+
+11) git checkout branch_name : Used to switch to particular branch
+
+git checkout wipro1 
+
+12) git checkout -b branch_name : used to create a branch and enter into that.
+
+13) git branch -D branch_name : Used to delete a particular branch
+
+
+
+
