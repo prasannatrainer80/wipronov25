@@ -1,0 +1,132 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    // Method to shuffle words in a sentence
+	public static String[] shuffleWords(String[] words) {
+	    int length = words.length;
+		int rotation = length / 2;  // You can choose any other fixed rotation number
+
+	    // Perform left rotation by the calculated number of positions
+	String[] shuffledWords = new String[length];
+	    for (int i = 0; i< length; i++) {
+	shuffledWords[i] = words[(i + rotation) % length];
+	    }
+	
+	    return shuffledWords;
+	}
+
+    // Method to calculate the average of an array of numbers
+    public static double calculateAverage(int[] numbers) {
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+        return sum / (double) numbers.length;
+    }
+
+    // Method to replace vowels in a sentence
+    public static String replaceVowels(String sentence) {
+        return sentence.replaceAll("(?i)[aeiou]", "*");
+    }
+
+    // Method to reverse a sentence
+    public static String reverseString(String sentence) {
+        return new StringBuilder(sentence).reverse().toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+boolean exit = false;
+
+        while (!exit) {
+            // Displaying the menu
+System.out.println("Choose an option:");
+System.out.println("1. Shuffle Words in the Sentence");
+System.out.println("2. Calculate Average of Numbers");
+System.out.println("3. Replace Vowels in a Sentence");
+System.out.println("4. Reverse String if Length > Threshold");
+System.out.println("5. Exit");
+
+            // Checking if input is an integer and is within valid range
+            if (!scanner.hasNextInt()) {
+System.out.println("Wrong input. Please enter a valid choice.");
+scanner.next();  // Consume the invalid input
+                continue;
+            }
+
+            int choice = scanner.nextInt();
+scanner.nextLine();  // Consume newline
+
+            switch (choice) {
+                case 1:
+                    // Independent input for shuffling words
+System.out.println("Enter a sentence to shuffle:");
+                    String sentenceToShuffle = scanner.nextLine();
+String[] wordsToShuffle = sentenceToShuffle.split(" ");
+String[] shuffledWords = shuffleWords(wordsToShuffle);
+System.out.println("Shuffled Sentence: " + String.join(" ", shuffledWords));
+                    break;
+
+                case 2:
+                    // Independent input for calculating average
+System.out.println("Enter numbers (space-separated):");
+                    String numberInput = scanner.nextLine();
+String[] numStrings = numberInput.split(" ");
+int[] numbers = new int[numStrings.length];
+                    try {
+                        for (int i = 0; i<numStrings.length; i++) {
+                            numbers[i] = Integer.parseInt(numStrings[i]);
+                        }
+                        double average = calculateAverage(numbers);
+System.out.println("Average of the numbers: " + average);
+                    } catch (NumberFormatException e) {
+System.out.println("Invalid number input. Please enter valid integers.");
+                    }
+                    break;
+
+                case 3:
+                    // Independent input for replacing vowels
+System.out.println("Enter a sentence to replace vowels:");
+                    String sentenceForVowels = scanner.nextLine();
+                    String replacedVowels = replaceVowels(sentenceForVowels);
+System.out.println("Sentence with vowels replaced: " + replacedVowels);
+                    break;
+
+                case 4:
+                    // Independent input for reversing string if length is greater than threshold
+System.out.println("Enter a sentence to check length and reverse:");
+                    String sentenceToReverse = scanner.nextLine();
+System.out.println("Enter the length threshold:");
+                    if (!scanner.hasNextInt()) {
+System.out.println("Invalid threshold. Please enter a valid number.");
+scanner.next();  // Consume the invalid input
+                        break;
+                    }
+                    int threshold = scanner.nextInt();
+scanner.nextLine();  // Consume newline
+
+                    if (sentenceToReverse.length() > threshold) {
+                        String reversedSentence = reverseString(sentenceToReverse);
+System.out.println("Reversed Sentence: " + reversedSentence);
+                    } else {
+System.out.println("Sentence length is below or equal to the threshold. Original Sentence: " + sentenceToReverse);
+                    }
+                    break;
+
+                case 5:
+                    // Exit the program
+                    exit = true;
+System.out.println("Exiting the program.");
+                    break;
+
+                default:
+                    // Handle invalid menu choice
+System.out.println("Wrong input. Please enter a valid choice.");
+                    break;
+            }
+        }
+scanner.close();
+    }
+}

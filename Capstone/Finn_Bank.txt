@@ -23,6 +23,15 @@ MobileNo
 Email
 Status 
 
+History
+_______
+
+HistoryId(Id PK AI)
+TranType (C/D)
+TranAmount
+TranStatus
+TranDate 
+
 _______________________________________________________________
 
 Admin will see all pending records and he will Approve then the accountNo to be generated.
@@ -47,3 +56,13 @@ By Default Customer account status is Inactive
 As In Jsp admin you can see all inactive user details,
 
 as once you click on active button accountNo to be generated and status becomes active 
+
+
+3) Deposit
+
+4) Withdraw
+
+5) Fund Transfer
+
+6) PhonePe 
+
