@@ -1,0 +1,117 @@
+import java.util.Scanner;
+
+public class SubstringReplacementAndArrayIndexSum {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String inputString;
+int[] inputArray;
+        int element;
+        int threshold = 5;
+
+        // Take user input for the string
+System.out.print("Enter a string: ");
+inputString = scanner.nextLine();
+
+        // Take user input for the array
+System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
+inputArray = new int[size];
+System.out.println("Enter the elements of the array:");
+        for (int i = 0; i< size; i++) {
+inputArray[i] = scanner.nextInt();
+        }
+
+        // Take user input for the element to find
+System.out.print("Enter the element to find: ");
+        element = scanner.nextInt();
+
+        // Menu for user to choose the case
+        int choice;
+        do {
+System.out.println("\nChoose an option:");
+System.out.println("1. Replace every second character in each word of a string with 'x'");
+System.out.println("2. Find the sum of the index positions of all occurrences of a given element in an array");
+System.out.println("3. Replace every vowel in the string with its lowercase counterpart");
+System.out.println("4. Return the modified string and the sum of index positions of the element");
+System.out.println("5. Return the string in uppercase if the sum is greater than a threshold value");
+System.out.println("0. Exit");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    String modifiedString1 = replaceEverySecondCharacter(inputString);
+System.out.println("String with replaced characters: " + modifiedString1);
+                    break;
+
+                case 2:
+                    int sumOfIndices = sumOfElementIndices(inputArray, element);
+System.out.println("Sum of index positions: " + sumOfIndices);
+                    break;
+
+                case 3:
+                    String modifiedString2 = replaceVowelsWithLowercase(inputString);
+System.out.println("String with vowels replaced: " + modifiedString2);
+                    break;
+
+                case 4:
+                    String modifiedString4 = replaceEverySecondCharacter(inputString);
+                    int sumIndices = sumOfElementIndices(inputArray, element);
+System.out.println("Modified string: " + modifiedString4);
+System.out.println("Sum of index positions of the element: " + sumIndices);
+                    break;
+
+                case 5:
+                    int sumIndicesCase5 = sumOfElementIndices(inputArray, element);
+                    String finalString = replaceEverySecondCharacter(inputString);
+                    if (sumIndicesCase5 > threshold) {
+finalString = finalString.toUpperCase();
+                    }
+System.out.println("Final string: " + finalString);
+                    break;
+
+                case 0:
+System.out.println("Exiting...");
+                    break;
+
+                default:
+System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 0);
+
+scanner.close();
+    }
+
+    // Method to replace every second character in each word with 'x'
+    private static String replaceEverySecondCharacter(String str) {
+        StringBuilder result = new StringBuilder();
+String[] words = str.split(" ");
+        for (String word : words) {
+            for (int i = 0; i<word.length(); i++) {
+                if (i % 2 == 1) {
+result.append('x');
+                } else {
+result.append(word.charAt(i));
+                }
+            }
+result.append(" "); // Add space after each word
+        }
+        return result.toString().trim();
+    }
+
+    // Method to find the sum of the index positions of all occurrences of a given element in an array
+    private static int sumOfElementIndices(int[] array, int element) {
+        int sum = 0;
+        for (int i = 0; i<array.length; i++) {
+            if (array[i] == element) {
+                sum += i;
+            }
+        }
+        return sum;
+    }
+
+    // Method to replace every vowel in the string with its lowercase counterpart
+    private static String replaceVowelsWithLowercase(String str) {
+        return str.replaceAll("[AEIOU]", "a").replaceAll("[AEIOU]", "e").replaceAll("[AEIOU]", "i")
+.replaceAll("[AEIOU]", "o").replaceAll("[AEIOU]", "u");
+    }
+}
